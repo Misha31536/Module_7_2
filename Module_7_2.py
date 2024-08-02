@@ -35,7 +35,8 @@ def custom_write(file_name, strings):
     else:
             file = open(file_name, 'w')
             file.close()
-            custom_write(file_name, strings)
+            return custom_write(file_name, strings)
+
 
 a = custom_write( "Module_7_2.txt",  [
     'Text for tell.',
