@@ -4,21 +4,22 @@ from pprint import pprint
 def custom_write(file_name, strings):
     if os.path.isfile(file_name):
         for i in strings:
-            file = open(file_name, 'r')
+            file = open(file_name, 'r', encoding="utf-8")
             line = file.read().splitlines()
             if i in line:
                 file.close()
                 continue
             else:
-                file = open(file_name, 'a')
+                file = open(file_name, 'a', encoding="utf-8")
                 file.write(i + '\n')
                 file.close()
-        file = open(file_name, 'r')
+        file = open(file_name, 'r', encoding="utf-8")
         j = 1
         strings_positions = {}
         len_ = len(file.readlines())
-        file.close()
-        file = open(file_name, 'r')
+        file.seek(0)
+        #file.close()
+        #file = open(file_name, 'r')
         while j != len_ + 1 :
             line = file.readline()
             strings_positions[(j, file.tell())] = line.rstrip('\n')
@@ -32,7 +33,6 @@ def custom_write(file_name, strings):
         #     file.close()
         # return strings_positions
     else:
-        for i in strings:
             file = open(file_name, 'w')
             file.close()
             custom_write(file_name, strings)
